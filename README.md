@@ -1,6 +1,6 @@
 # datastructure assignment in Arba Minch University.
-|Name:--------------------| ID No.   |username---------------|                        
-|-------------------------|----------|------------------------------|
+|Name:-------------| ID No----|Username-----|                     
+|-------------------------|-----------|-----|
 |1.Muhidin Mitiku         | NSR/723/16 |Mudax36
 |2.Umer     Hussen        | NSR/996/16 |umer0239
 |3.Christina Bereket      | NSR/226/16 |ChristinaBereket
