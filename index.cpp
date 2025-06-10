@@ -6,13 +6,13 @@ using namespace std;
 
 const int MAX_FILES = 100; 
 string files[MAX_FILES] = {
-    "wondays.txt", "birhanus.xls","ahmeds.pptx", "tedys.txt",
-    "aklilus.txt","temesgens.xls" };
-int fileCount = 5;
+    "Mudaxs.txt", "Simeras.xls","Umers.pptx", "Samsons.txt",
+    "Christina.txt","Ermiyas.xls" };
+int fileCount = 6;
 
 void displayFiles() {
     cout << "Files:\n";
-    for (int i = 0; i <= fileCount; ++i) {
+    for (int i = 0; i <fileCount; ++i) {
         cout << files[i] << endl;
     }
 }
@@ -22,7 +22,7 @@ void searchFile() {
     cout << "Enter file name to search: ";
     getline(cin, query);
     
-    for (int i = 0; i <=fileCount; ++i) {
+    for (int i = 0; i <fileCount; ++i) {
         if (files[i] == query) {
             cout << "File found: " << files[i] << endl;
             return;
