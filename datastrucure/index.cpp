@@ -6,8 +6,8 @@ using namespace std;
 
 const int MAX_FILES = 100; 
 string files[MAX_FILES] = {
-    "wondays.txt", "birhanus.xls","ahmeds.pptx", "tedys.txt",
-    "aklilus.txt","temesgens.xls" };
+    "Mudaxs.txt", "birhanus.xls","Umers.pptx", "Samsons.txt",
+    "Christi.txt","Ermiyas.xls" };
 int fileCount = 5;
 
 void displayFiles() {
