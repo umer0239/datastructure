@@ -28,7 +28,7 @@ void searchFile() {
             return;
         }
     }
-    cout << "File not found: " << query << endl;
+    cout << "File is not found: " << query << endl;
 }
 
 void sortFiles() {
@@ -86,4 +86,4 @@ int main() {
 
     return 0;
 }
-muhdin
+
