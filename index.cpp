@@ -34,8 +34,8 @@ void searchFile() {
 void sortFiles() {
     int sortChoice;
     cout << "Choose sorting order:\n";
-    cout << "1. Ascending Order\n";
-    cout << "2. Descending Order\n";
+    cout << "1. Ascending Order:\n";
+    cout << "2. Descending Order:\n";
     cout << "Enter your choice: ";
     cin >> sortChoice;
 
