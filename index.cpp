@@ -11,13 +11,10 @@ string files[MAX_FILES] = {
 int fileCount = 6;
 
 void displayFiles() {
-     if (filecount == 0);{
-      cout << " No files to display .\n";
-      return;
-     }
      cout << "Files:\n";
    for (int i = 0; i < fileCount; ++i {
      cout << i+1 << ". " << files[i] << endl;
+}
 }
 void searchFile() {
     string query;
