@@ -9,7 +9,7 @@
 |6.Simera     Mamo        | NSR/893/16 |Simera661
 # File Management System
 
-This C++ console application allows users to manage a list of files. Users can display the list of files, search for specific files, and sort the files in either ascending or descending order.
+This C++ console application allows users to manage a list of files. Users can display the list of files, search for specific files, and sort the files in either ascending or descending order,adding, deleting, and analyzing file types.
 
 ## Features
  
