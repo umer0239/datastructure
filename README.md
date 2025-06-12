@@ -30,6 +30,29 @@ Offers two sorting options:
 Ascending order (A-Z)
 Descending order (Z-A)
 Automatically displays the sorted list.
+
+**Add a New File**
+
+Users can add a new file name to the list.
+The system prevents duplicate entries (case-insensitive check).
+Ensures that the total number of files does not exceed a predefined maximum (MAX_FILES = 100).
+
+**Delete a File**
+
+Users can remove a file by entering its name.
+Deletion is case-insensitive.
+Automatically shifts remaining files to keep the list compact.
+
+**File Type Summary**
+Analyzes the file list and counts how many files of each extension exist.
+For example: .txt, .xls, .pptx
+Output is presented as a summary report.
+
+**Exit**
+
+Terminates the program gracefully
+
+
 ## Usage
 
 1. Clone the repository.
