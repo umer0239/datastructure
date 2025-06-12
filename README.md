@@ -27,8 +27,8 @@ Displays whether the file was found.
   **Sort Files**
   
 Offers two sorting options:
-Ascending order (A-Z)
-Descending order (Z-A)
+Ascending order (A-Z),
+Descending order (Z-A) &
 Automatically displays the sorted list.
 
 **Add a New File**
