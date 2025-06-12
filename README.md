@@ -44,6 +44,7 @@ Deletion is case-insensitive.
 Automatically shifts remaining files to keep the list compact.
 
 **File Type Summary**
+
 Analyzes the file list and counts how many files of each extension exist.
 For example: .txt, .xls, .pptx
 Output is presented as a summary report.
