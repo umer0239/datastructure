@@ -16,7 +16,7 @@ void displayFiles() {
         return;
  }
      cout << "Files:\n";
-   for (int i = 0; i < fileCount; ++i {
+   for (int i = 0; i < fileCount; ++i) {
      cout << i+1 << ". " << files[i] << endl;
 }
 }
@@ -66,8 +66,7 @@ int main() {
         cout << "3. Sort Files\n";
         cout << "4. Exit\n";
         cout << "Enter your choice: ";
-        cin >> choice;
-        cin.ignore(); 
+        cin >> choice; 
 
         switch (choice) {
             case 1:
