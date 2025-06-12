@@ -14,15 +14,18 @@ This C++ console application allows users to manage a list of files. Users can d
 ## Features
  
   **Display Files**
+  
 Shows the current list of file names with numbering.
 If no files exist, it displays a message accordingly.
 
- - **Search for a File**
+**Search for a File**
+
 Allows users to search for a file name.
 The search is case-insensitive for better user experience.
 Displays whether the file was found.
 
   **Sort Files**
+  
 Offers two sorting options:
 Ascending order (A-Z)
 Descending order (Z-A)
