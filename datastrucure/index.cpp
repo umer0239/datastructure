@@ -52,6 +52,19 @@ void sortFiles() {
 
     displayFiles();
 }
+void addFile() {
+    if (fileCount >= MAX_FILES) {
+        cout << "File list is full. Cannot add more files.\n";
+        return;
+    }
+
+    string newFile;
+    cout << "Enter the name of the file to add: ";
+    getline(cin, newFile);
+
+    files[fileCount++] = newFile;
+    cout << "File added successfully.\n";
+}
 
 int main() {
     int choice;
@@ -62,6 +75,7 @@ int main() {
         cout << "2. Search for a File\n";
         cout << "3. Sort Files\n";
         cout << "4. Exit\n";
+        cout << "5. Add a File\n";
         cout << "Enter your choice: ";
         cin >> choice;
         cin.ignore(); 
@@ -79,6 +93,9 @@ int main() {
             case 4:
                 cout << "Exiting the program.\n";
                 break;
+              case 5:
+                addFile();
+                break;
             default:
                 cout << "Invalid choice. Please try again.\n";
         }
