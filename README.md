@@ -1,4 +1,4 @@
-# Data structure and Algorithm Group Assignment in Arba Minch University.
+# Data structure and Algorithm Group 7 Assignment in Arba Minch University.
 |Name:         | ID No     |Github Username   |                     
 |-------------------------|-----------|-----|
 |1.Muhidin Mitiku         | NSR/723/16 |Mudax36
