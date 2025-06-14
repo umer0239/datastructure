@@ -3,6 +3,7 @@
 #include <string>
 #include <cctype>
 #include <map>
+#include <fstream>
 
 using namespace std;
 
@@ -18,7 +19,12 @@ string toLower(const string& str) {
     transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
     return lowerStr;
 }
-
+void displayWelcome() {
+    cout << "=================================\n";
+    cout << "  FILE MANAGEMENT SYSTEM v1.0\n";
+    cout << "=================================\n";
+    cout << "Welcome! Manage your files easily.\n\n";
+}
 void displayFiles() {
     if (fileCount == 0) {
         cout << "No files to display.\n";
@@ -128,6 +134,7 @@ void countFileTypes() {
 }
 
 int main() {
+    displayWelcome();
     int choice;
 
     do {
