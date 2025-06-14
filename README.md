@@ -48,6 +48,12 @@ Automatically shifts remaining files to keep the list compact.
 Analyzes the file list and counts how many files of each extension exist.
 For example: .txt, .xls, .pptx
 Output is presented as a summary report.
+It uses a string array to store file names.
+
+Uses a do-while loop to keep showing the menu until the user chooses to exit.
+
+cin.ignore() is smartly used to handle newline issues when switching between cin and getline.
+
 
 **Exit**
 
