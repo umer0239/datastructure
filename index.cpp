@@ -90,26 +90,43 @@ void addFile() {
     files[fileCount++] = newFile;
     cout << "File added successfully.\n";
 }
-
 void deleteFile() {
-    string filename;
-    cout << "Enter file name to delete: ";
-    getline(cin, filename);
-
-    for (int i = 0; i < fileCount; ++i) {
-        if (toLower(files[i]) == toLower(filename)) {
-            for (int j = i; j < fileCount - 1; ++j) {
-                files[j] = files[j + 1];
-            }
-            --fileCount;
-            cout << "File deleted successfully.\n";
-            return;
-        }
+    // Show available files first
+    if (fileCount == 0) {
+        cout << " Your folder is empty - nothing to delete!\n";
+        return;
     }
+    cout << "\n Files you can delete:\n";
+    for (int i = 0; i < fileCount; i++) {
+        cout << "  " << (i+1) << ") " << files[i] << "\n";
+    }
+    cout << "\n Which file should I remove? (1-" << fileCount << "): ";
+    int choice;
+    cin >> choice;
+    cin.ignore(); // Clear the input buffer
 
-    cout << "File not found. Cannot delete.\n";
+    // Validate choice
+    if (choice < 1 || choice > fileCount) {
+        cout << " Please enter a number between 1 and " << fileCount << ".\n";
+        return;
+    }
+ // Confirm deletion
+    cout << "Are you sure you want to delete '" << files[choice-1] << "'? (y/n): ";
+    char confirm;
+    cin >> confirm;
+    cin.ignore();
+
+    if (tolower(confirm) == 'y') {
+        // Shift files to fill the gap
+        for (int i = choice-1; i < fileCount-1; i++) {
+            files[i] = files[i+1];
+        }
+        fileCount--;
+        cout << "✔ Successfully deleted!\n";
+    } else {
+        cout << "Phew! File kept safe.\n";
+    }
 }
-
 void countFileTypes() {
     map<string, int> typeCount;
 
