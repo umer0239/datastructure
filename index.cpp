@@ -4,6 +4,7 @@
 #include <cctype>
 #include <map>
 #include <fstream>
+#include <limits> 
 
 using namespace std;
 
@@ -14,148 +15,98 @@ string files[MAX_FILES] = {
 };
 int fileCount = 6;
 
+
+int getValidatedInput(int min, int max) {
+    int choice;
+    while (true) {
+        cout << "Enter your choice (" << min << "-" << max << "): ";
+        cin >> choice;
+        if (cin.fail() || choice < min || choice > max) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please try again.\n";
+        } else {
+            cin.ignore();
+            return choice;
+        }
+    }
+}
+
 string toLower(const string& str) {
     string lowerStr = str;
     transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
     return lowerStr;
 }
+
 void displayWelcome() {
     cout << "=================================\n";
-    cout << "  FILE MANAGEMENT SYSTEM v1.0\n";
+    cout << "  FILE MANAGEMENT SYSTEM v1.1\n"; 
     cout << "=================================\n";
     cout << "Welcome! Manage your files easily.\n\n";
 }
+
+// NEW: Case-insensitive comparison for sorting
+bool caseInsensitiveCompare(const string& a, const string& b) {
+    return toLower(a) < toLower(b);
+}
+
 void displayFiles() {
     if (fileCount == 0) {
         cout << "No files to display.\n";
         return;
     }
-    cout << "Files:\n";
+    cout << "Files (" << fileCount << " total):\n"; 
     for (int i = 0; i < fileCount; ++i) {
         cout << i + 1 << ". " << files[i] << endl;
     }
 }
 
 void searchFile() {
+    if (fileCount == 0) { 
+        cout << "No files to search.\n";
+        return;
+    }
+
     string query;
     cout << "Enter file name to search: ";
     getline(cin, query);
 
     bool found = false;
     for (int i = 0; i < fileCount; ++i) {
-        if (toLower(files[i]) == toLower(query)) {
-            cout << "File found: " << files[i] << endl;
+        if (toLower(files[i]).find(toLower(query)) != string::npos) { 
+            cout << "Found: " << files[i] << endl;
             found = true;
-            break;
         }
     }
-    if (!found)
-        cout << "File not found: " << query << endl;
+    if (!found) cout << "No matches found.\n";
 }
 
 void sortFiles() {
-    int sortChoice;
+    if (fileCount == 0) { 
+        cout << "No files to sort.\n";
+        return;
+    }
+
     cout << "Choose sorting order:\n";
-    cout << "1. Ascending Order\n";
-    cout << "2. Descending Order\n";
-    cout << "Enter your choice: ";
-    cin >> sortChoice;
-    cin.ignore();
+    cout << "1. A-Z\n"; 
+    cout << "2. Z-A\n";
+    int sortChoice = getValidatedInput(1, 2); 
 
     if (sortChoice == 1) {
-        sort(files, files + fileCount);
-        cout << "Files sorted in ascending order.\n";
-    } else if (sortChoice == 2) {
-        sort(files, files + fileCount, greater<string>());
-        cout << "Files sorted in descending order.\n";
+        sort(files, files + fileCount, caseInsensitiveCompare); 
     } else {
-        cout << "Invalid choice. Sorting cancelled.\n";
-        return;
+        sort(files, files + fileCount, [](const string& a, const string& b) {
+            return toLower(a) > toLower(b);
+        });
     }
-
     displayFiles();
 }
-
-void addFile() {
-    if (fileCount >= MAX_FILES) {
-        cout << "Maximum file limit reached. Cannot add more files.\n";
-        return;
-    }
-
-    string newFile;
-    cout << "Enter new file name: ";
-    getline(cin, newFile);
-
-    for (int i = 0; i < fileCount; ++i) {
-        if (toLower(files[i]) == toLower(newFile)) {
-            cout << "File already exists. Cannot add duplicate.\n";
-            return;
-        }
-    }
-
-    files[fileCount++] = newFile;
-    cout << "File added successfully.\n";
-}
-void deleteFile() {
-    // Show available files first
-    if (fileCount == 0) {
-        cout << " Your folder is empty - nothing to delete!\n";
-        return;
-    }
-    cout << "\n Files you can delete:\n";
-    for (int i = 0; i < fileCount; i++) {
-        cout << "  " << (i+1) << ") " << files[i] << "\n";
-    }
-    cout << "\n Which file should I remove? (1-" << fileCount << "): ";
-    int choice;
-    cin >> choice;
-    cin.ignore(); // Clear the input buffer
-
-    // Validate choice
-    if (choice < 1 || choice > fileCount) {
-        cout << " Please enter a number between 1 and " << fileCount << ".\n";
-        return;
-    }
- // Confirm deletion
-    cout << "Are you sure you want to delete '" << files[choice-1] << "'? (y/n): ";
-    char confirm;
-    cin >> confirm;
-    cin.ignore();
-
-    if (tolower(confirm) == 'y') {
-        // Shift files to fill the gap
-        for (int i = choice-1; i < fileCount-1; i++) {
-            files[i] = files[i+1];
-        }
-        fileCount--;
-        cout << "✔ Successfully deleted!\n";
-    } else {
-        cout << "Phew! File kept safe.\n";
-    }
-}
-void countFileTypes() {
-    map<string, int> typeCount;
-
-    for (int i = 0; i < fileCount; ++i) {
-        size_t dotPos = files[i].rfind('.');
-        if (dotPos != string::npos) {
-            string ext = toLower(files[i].substr(dotPos));
-            typeCount[ext]++;
-        }
-    }
-
-    cout << "File type summary:\n";
-    for (const auto& entry : typeCount) {
-        cout << entry.first << ": " << entry.second << " file(s)\n";
-    }
-}
-
 int main() {
     displayWelcome();
     int choice;
 
     do {
-        cout << "\nMenu:\n";
+        cout << "\nMain Menu:\n"; 
         cout << "1. Display Files\n";
         cout << "2. Search for a File\n";
         cout << "3. Sort Files\n";
@@ -163,9 +114,8 @@ int main() {
         cout << "5. Delete a File\n";
         cout << "6. Show File Type Summary\n";
         cout << "7. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-        cin.ignore();
+
+        choice = getValidatedInput(1, 7); 
 
         switch (choice) {
             case 1: displayFiles(); break;
@@ -175,7 +125,6 @@ int main() {
             case 5: deleteFile(); break;
             case 6: countFileTypes(); break;
             case 7: cout << "Exiting program.\n"; break;
-            default: cout << "Invalid choice. Try again.\n";
         }
     } while (choice != 7);
 
